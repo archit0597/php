@@ -12,6 +12,7 @@ $name=$email=$phone=$address=$state=$pass="";
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- Custom Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
 
@@ -20,17 +21,21 @@ $name=$email=$phone=$address=$state=$pass="";
 body{
 font-family: Roboto;
 }
+.maker{
+background-color: #ededed;
+padding: 5px 10px 5px 10px;
+border-radius: 4px;
+width: 100%;
+height: auto;	
+	
+}
 </style>
 	</head>
 
 
 
 <body>
-	<div class="container">
-		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">Guitar <span>Store</span></span></h1>
-		</div>
-		<div	style="background-color: #ededed">
+	<div >
 			<?php
 $servername="localhost";
 $username="root";
@@ -43,12 +48,25 @@ if(!mysqli_select_db($link,'gsms')){
    exit;
 }	
 
-$sql=("select * from cust");
+$sql=("select * from products");
 $result=mysqli_query($link,$sql);
 if($result){
-  echo "details saved successfully";
-  while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["custid"]. " - Name: " . $row["custname"]. " " . "<br>";
+  echo "details saved successfully".$result->num_rows."<br>";
+  $x=$result->num_rows;
+  $val=($x/4) +1;
+  $q=1;
+  while(($row = $result->fetch_assoc()) && $val!=0) {
+		if($q%4==1){
+			echo "<div class='middle row text-center' style='margin-bottom:1rem;'>";
+			echo '<div class="card-deck">';	
+		}
+		//echo '<div class="col-sm-3 col-xs-12"><div class="card"><img class="card-img-top" src="'.$row["pimgurl"].$row["pmodel"].$row["pbrand"].$row["pprice"].$row["ptype"];
+		echo '<div class="col-sm-3 col-xs-12"><div class="card maker"><img class="card-img-top" src="'.$row["pimgurl"].'" alt="'.$row["pbrand"].$row["pmodel"].'"><div class="card-block exsp"><h4 class="card-title">'.$row["pbrand"].$row["pmodel"].'</h4><p class="card-text">'.$row["ptype"]." ".$row["pprice"].'</p></div></div></div>';
+        if($q%4==0){
+				echo "</div></div>";
+				$val=$val-1;
+		}
+		$q=$q+1;
     }
 }else{
   echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -63,12 +81,7 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 */
-?>
-		
-		
-		
-		</div>
-		
+?>	
 
 <script>
 	$(document).ready(function () {
