@@ -11,35 +11,36 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Custom Stylesheet -->
 	<link rel="stylesheet" href="css/style.css">
-
+<style>
+body{
+font-family: Roboto;
+}
+</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
 <body>
 	<div class="container">
 		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">Daily <span>UI</span></span></h1>
+			<h1 id="title" class="hidden"><span id="logo" class="animated fadeInDown">Guitar <span>Store</span></span></h1>
+			
 		</div>
-		<div class="login-box animated fadeInUp">
+		<div class="login-box animated" style="margin-bottom:50px">
 			<div class="box-header">
-				<h2>Log In</h2>
+				<h2>Sign In</h2>
 			</div>
-			<label for="username">Username</label>
+			<input type="text" id="username" placeholder="Enter Email ID">
 			<br/>
-			<input type="text" id="username">
-			<br/>
-			<label for="password">Password</label>
-			<br/>
-			<input type="password" id="password">
+			<input type="password" id="password" placeholder="Enter Password">
 			<br/>
 			<button type="submit">Sign In</button>
 			<br/>
-			<a href="#"><p class="small">Forgot your password?</p></a>
+			<a href="register.php"><p class="small"><b>New User? Register</b></p></a>
 		</div>
 	</div>
 </body>
 
-<script>
+<!--script>
 	$(document).ready(function () {
     	$('#logo').addClass('animated fadeInDown');
     	$("input:text:visible:first").focus();
@@ -56,7 +57,7 @@
 	$('#password').blur(function() {
 		$('label[for="password"]').removeClass('selected');
 	});
-</script>
+</script-->
 
 <footer class="footer navbar-default navbar-fixed-bottom" style="background-color: #f8f8f8; color: #444 ; ">
 <div class="container">

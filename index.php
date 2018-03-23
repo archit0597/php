@@ -164,7 +164,7 @@ if(isset($_SESSION['username'])) {
 <!-- There are some issue-->
 
 <?php
-/*
+
 function OpenCon()
  {
  $dbhost = "localhost";
@@ -186,11 +186,15 @@ function CloseCon($conn)
 
 $conn = OpenCon();
 echo "Connected Successfully"; 
-CloseCon($conn);  
+ 
 
+$result=mysqli_query($conn,"select custname,custid from cust");
+while($row=mysqli_fetch_array($result))
+{
+         echo $row['custname'].' '.$row['custid'].'<br/>';
+ }
+ CloseCon($conn); 
 //Add the SQL Query code
-
-*/
 ?>
 
 </body>
