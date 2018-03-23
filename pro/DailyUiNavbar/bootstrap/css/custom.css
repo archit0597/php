@@ -1,0 +1,33 @@
+ul li a{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+  }
+
+  ul li:hover{
+    background: orange;
+  }
+
+  ul li a:hover{
+    color: orange;
+  }
+.dropdown-menu>li>a:hover {
+   color: #ededed;
+   text-decoration: none;
+   background-color: #ffa500;
+}
+.footer {
+  padding: 10px 0;
+}
+.footer a {
+  color: orange;
+  font-size: 20px;
+  padding: 10px;
+  transition: all .5s ease;
+}
+.menuitems{
+    font-size: 20px;
+    position: line-height-computed;
+    top: 5px;
+    padding: 10px 0px;
+}

@@ -1,0 +1,49 @@
+body{     
+width: 100%;     
+height: 100%;     
+margin: 0; } 
+ 
+a{     
+text-decoration: none;     
+background-color: transparent;     
+color:#ededed; }
+
+.content{
+min-height:600px;
+padding-top: 80px;
+
+}
+.container{
+width:90%;     margin:auto;     overflow:hidden;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid;
+    border-color: #1994e8;
+    margin: 1em 0;
+    padding: 0; 
+}
+ebr{
+height:40px; visibility:hidden; margin-bottom:-1px; border-color:whitesmoke;
+    
+}
+
+.inv{
+   background: transparent;
+    border: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
