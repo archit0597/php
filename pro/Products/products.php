@@ -1,3 +1,13 @@
+<?php
+  session_start();
+   $_session["order_id"]="101";
+   $_session["cust_id"]="100"
+   $d=date("Y-m-d");
+   $_session["order_date"]=$d;
+   echo '$d';
+   $myarray=array("100":"2","101":"2","103":"4");
+   $_session1['cust']=$myarray; 
+?>
 <!DOCTYPE html>
 <?php
 $name=$email=$phone=$address=$state=$pass="";
@@ -35,8 +45,8 @@ height: auto;
 
 
 <body>
-	<div >
-			<?php
+	<div>
+<?php
 $servername="localhost";
 $username="root";
 $password="";

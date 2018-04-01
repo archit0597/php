@@ -1,9 +1,34 @@
 <!DOCTYPE html>
+<?php
+ if(isset($_POST['submit']))
+ {
+	 echo "test";
+
+session_start();
+$servername='localhost';
+$username='root';
+$password='';
+$link = mysql_connect($servername,$username,$password);
+if($link==false)
+	die("connection failed". con-connect_error);
+if (!mysql_select_db('cust', $link)) {
+    echo 'Could not select database';
+    exit;
+}
+$username = $_POST["username"];
+$password = $_POST["password"];
+$query = "SELECT * FROM cust WHERE custemail='$username' and custpass='$password'";
+if(mysql_query($query,$link))
+{
+echo "<a href='register.php'></a>";
+}
+ }
+?>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
-	<title>Daily UI - Day 1 Sign In</title>
+	<title>WELCOME</title>
 
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
@@ -29,11 +54,11 @@ font-family: Roboto;
 			<div class="box-header">
 				<h2>Sign In</h2>
 			</div>
-			<input type="text" id="username" placeholder="Enter Email ID">
+			<input type="text" name="username" placeholder="Enter Email ID">
 			<br/>
-			<input type="password" id="password" placeholder="Enter Password">
+			<input type="password" name="password" placeholder="Enter Password">
 			<br/>
-			<button type="submit">Sign In</button>
+			<button type="submit" name="submit">Sign In</button>
 			<br/>
 			<a href="register.php"><p class="small"><b>New User? Register</b></p></a>
 		</div>
@@ -58,22 +83,4 @@ font-family: Roboto;
 		$('label[for="password"]').removeClass('selected');
 	});
 </script-->
-
-<footer class="footer navbar-default navbar-fixed-bottom" style="background-color: #f8f8f8; color: #444 ; ">
-<div class="container">
-<center>
-<text style="float: left; vertical-align: middle; top:4px">
-Copyright © Marvel Edge Enterprise | All rights reserved. </text> 
-<text style="float: right; "> 
-<a href="#"style="color: #3b5998 "><i class="fa fa-facebook"title="Facebook" >     </i></a>
-<a href="#" style="color:  #00aced"><i class="fa fa-twitter" title="Twitter" >     </i></a>
-<a href="#"style="color:  #007bb6"><i class="fa fa-linkedin" title="LinkedIn" >     </i></a>
-<a href="#" style="color: #de1212 "><i class="fa fa-google-plus" title="Google Plus">     </i></a>
-<a href="#" style="color: #cc181e "><i class="fa fa-youtube" title="YouTube">     </i></a> </text>
-</center>
-</p>
-</footer>
-
-
-
 </html>
