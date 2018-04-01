@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <?php
- if(isset($_POST['submit']))
- {
-	 echo "test";
-
-session_start();
+echo "test";
 $servername='localhost';
 $username='root';
 $password='';
-$link = mysql_connect($servername,$username,$password);
+$link = mysqli_connect($servername,$username,$password);
 if($link==false)
 	die("connection failed". con-connect_error);
-if (!mysql_select_db('cust', $link)) {
+if (!mysqli_select_db($link,'gsms')) {
     echo 'Could not select database';
     exit;
 }
+echo "connected";
+if (isset($_POST['username']) and isset($_POST['password'])){
 $username = $_POST["username"];
 $password = $_POST["password"];
-$query = "SELECT * FROM cust WHERE custemail='$username' and custpass='$password'";
-if(mysql_query($query,$link))
-{
-echo "<a href='register.php'></a>";
-}
- }
+$query1 =mysqli_query($link,"SELECT * FROM cust WHERE custemail='$username'");
+if(empty($query1)){
+		echo "EMPTYYY";
+	}
+else{
+		$jf1 = mysqli_fetch_assoc($query1);
+	    echo "Something is there";
+		if($jf1["custpass"]==(md5($password))){
+			session_start();		
+            $id = $jf1["custid"];
+			echo $id."lkoko1";
+	        $query2=mysqli_query($link,"SELECT * FROM orders WHERE custid='$id'");
+	        $jf2 = mysqli_fetch_assoc($query2);
+	        $oid1 = $jf2["orderid"];
+			$oid2=(int)$oid1;
+			$oid2=$oid2+1;
+			$oid = (string)$oid2;
+	        $d=date("Y-m-d");
+	        $fin = array($id,$oid,$d);
+            $_SESSION['details'] = $fin;
+			print_r($_SESSION["details"]);
+			echo "Correct";
+			header("Location:products.php");
+		}
+	    else{
+			echo "Invalid Credentials2";
+			unset($_POST['username']); 
+			unset($_POST['password']);
+			
+		}
+	}
+  }
+   else{
+     echo "Unset";
+   }
+ 
 ?>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<title>WELCOME</title>
@@ -54,12 +81,14 @@ font-family: Roboto;
 			<div class="box-header">
 				<h2>Sign In</h2>
 			</div>
+			<form  method="POST">
 			<input type="text" name="username" placeholder="Enter Email ID">
 			<br/>
 			<input type="password" name="password" placeholder="Enter Password">
 			<br/>
-			<button type="submit" name="submit">Sign In</button>
+			<button type="submit">Sign In</button>
 			<br/>
+			</form>
 			<a href="register.php"><p class="small"><b>New User? Register</b></p></a>
 		</div>
 	</div>

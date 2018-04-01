@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
  if(isset($_POST['submit']))
- {
+{
 	 echo "test";
 
 session_start();
@@ -17,12 +17,14 @@ if (!mysql_select_db('cust', $link)) {
 }
 $username = $_POST["username"];
 $password = $_POST["password"];
-$query = "SELECT * FROM cust WHERE custemail='$username' and custpass='$password'";
-if(mysql_query($query,$link))
-{
-echo "<a href='register.php'></a>";
-}
- }
+$query = "SELECT * FROM cust WHERE custemail='$username'";
+    if(empty($query)){
+		echo "Invalid Credentials";
+	}
+	else{
+	    if(
+	
+	}
 ?>
 <html lang="en">
 

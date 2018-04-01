@@ -63,20 +63,20 @@ font-family: Roboto;
 			<div class="box-header">
 				<h2>Registration</h2>
 			</div>
-			<input type="text" name="name" placeholder="Name" value="<?php echo $name;?>"><br>
 			<span class="error">* <?php echo $nameErr;?></span>
-			<input type="text" name="email" placeholder="E-Mail" value="<?php echo $email;?>"><br>
+			<input type="text" name="name" placeholder="Name" value="<?php echo $name;?>"><br>
 			<span class="error">* <?php echo $emailErr;?></span>
-			<input type="text" name="phone" placeholder="Mobile" value="<?php echo $phone;?>"><br>
+			<input type="text" name="email" placeholder="E-Mail" value="<?php echo $email;?>"><br>
 			<span class="error">* <?php echo $phoneErr;?></span>
-			<input type="text" name="address" placeholder="Address" value="<?php echo $address;?>"><br>
+			<input type="text" name="phone" placeholder="Mobile" value="<?php echo $phone;?>"><br>
 			<span class="error">* <?php echo $addressErr;?></span>
-			<input type="text" name="state" placeholder="State" value="<?php echo $state;?>"><br>
+			<input type="text" name="address" placeholder="Address" value="<?php echo $address;?>"><br>
 			<span class="error">* <?php echo $stateErr;?></span>
+			<input type="text" name="state" placeholder="State" value="<?php echo $state;?>"><br>
+            <span class="error">* <?php echo $passErr;?></span>
 			<input type="password" name="pass" placeholder="Password" value="<?php echo $pass;?>"><br>
-			<span class="error">* <?php echo $passErr;?></span>
-			<input type="password" name="pass1" placeholder="Confirm Password" value="<?php echo $pass1;?>"><br>
 			<span class="error">* <?php echo $cpassErr;?></span>
+			<input type="password" name="pass1" placeholder="Confirm Password" value="<?php echo $pass1;?>"><br>
 			<button type="submit">Register</button>
 			<br/>
 		</div>
