@@ -20,6 +20,8 @@
 		  session_destroy();
 	  
 	  print_r($_SESSION["cart"]); 
+	  echo "<br>";
+	  print_r($_SESSION["details"]);
    }
 ?>
 <!DOCTYPE html>
