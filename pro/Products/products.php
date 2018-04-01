@@ -31,12 +31,24 @@ $name=$email=$phone=$address=$state=$pass="";
 body{
 font-family: Roboto;
 }
+.image{
+width:15em;
+height:15em;
+border-radius:50%;
+	
+	
+}
 .maker{
-background-color: #ededed;
+background-color: rgba(220,220,220,0.99);
 padding: 5px 10px 5px 10px;
-border-radius: 4px;
+border-radius: 1px;
 width: 100%;
 height: auto;	
+}
+.somecont{
+
+margin-left:5%;
+margin-right:5%;
 	
 }
 </style>
@@ -45,8 +57,8 @@ height: auto;
 
 
 <body>
-	<div>
-<?php
+	<div class="somecont">
+			<?php
 $servername="localhost";
 $username="root";
 $password="";
@@ -71,7 +83,7 @@ if($result){
 			echo '<div class="card-deck">';	
 		}
 		//echo '<div class="col-sm-3 col-xs-12"><div class="card"><img class="card-img-top" src="'.$row["pimgurl"].$row["pmodel"].$row["pbrand"].$row["pprice"].$row["ptype"];
-		echo '<div class="col-sm-3 col-xs-12"><div class="card maker"><img class="card-img-top" src="'.$row["pimgurl"].'" alt="'.$row["pbrand"].$row["pmodel"].'"><div class="card-block exsp"><h4 class="card-title">'.$row["pbrand"].$row["pmodel"].'</h4><p class="card-text">'.$row["ptype"]." ".$row["pprice"].'</p></div></div></div>';
+		echo '<div class="col-sm-3 col-xs-12"><div class="card maker"><img class="image" src="../../pics/'.$row["pimgurl"].'.jpg" alt="'.$row["pbrand"].' '.$row["pmodel"].'"><div class="card-block exsp"><h4 class="card-title">'.$row["pbrand"].' '.$row["pmodel"].'</h4><p class="card-text">'.$row["ptype"]." ".$row["pprice"].'</p><br><input style="margin-top:-4em;" id="'.$row["pid"].'" type="button" onclick="cartFunc(this)" class="btn btn-success btn-sm" value="Add to Cart"></div></div></div>';
         if($q%4==0){
 				echo "</div></div>";
 				$val=$val-1;
@@ -92,8 +104,13 @@ if ($result->num_rows > 0) {
 }
 */
 ?>	
-
+</div>
 <script>
+	function cartFunc(object){
+		alert(object.id);
+	}
+	
+	
 	$(document).ready(function () {
     	$('#logo').addClass('animated fadeInDown');
     	$("input:text:visible:first").focus();
