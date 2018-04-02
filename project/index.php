@@ -22,7 +22,7 @@ if(empty($query1)){
 else{
 		$jf1 = mysqli_fetch_assoc($query1);
 	    echo "Something is there";
-		if($jf1["custpass"]==(md5($password))){
+		if($jf1["custpass"]==($password)){
 			session_start();		
             $id = $jf1["custid"];
 			echo $id."lkoko1";
