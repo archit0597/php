@@ -26,9 +26,9 @@ else{
 			session_start();		
             $id = $jf1["custid"];
 			echo $id."lkoko1";
-	        $query2=mysqli_query($link,"SELECT * FROM orders WHERE custid='$id'");
+	        $query2=mysqli_query($link,"SELECT max(orderid) from orders;");
 	        $jf2 = mysqli_fetch_assoc($query2);
-	        $oid1 = $jf2["orderid"];
+	        $oid1 = $jf2["max(orderid)"];
 			$oid2=(int)$oid1;
 			$oid2=$oid2+1;
 			$oid = (string)$oid2;
