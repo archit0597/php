@@ -1,9 +1,5 @@
 <?php
    session_start();
-   $_session["order_id"]="101";
-   $_session["cust_id"]="100";
-   $d=date("Y-m-d");
-   $_session["order_date"]=$d;
    if(!isset($_SESSION["cart"]))
    $_SESSION["cart"]=array();
    
