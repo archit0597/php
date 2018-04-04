@@ -1,4 +1,4 @@
-<?php
+qqqqqqqq1<?php
    session_start();
    $_session["order_id"]="101";
    $_session["cust_id"]="100";
@@ -32,7 +32,7 @@ $name=$email=$phone=$address=$state=$pass="";
 
 <head>
 	<meta charset="utf-8">
-	<title>Register</title>
+	<title>Welcome</title>
 
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
