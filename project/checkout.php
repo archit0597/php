@@ -1,11 +1,20 @@
 <?php
    session_start();
    if(!isset($_SESSION["cart"]))
-   header("Location : index.php");
+   {
+	   echo "<b>404 Invalid Request</b> ";
+	   exit;
+   }
    if(!isset($_SESSION["details"]))
-   header("Location : index.php");
-   if(!isset($_SESSION["cartq"])){
-   header("Location : index.php");}
+   {
+	   echo "<b>404 Invalid Request</b> ";
+	   exit;
+   }
+   if(!isset($_SESSION["cartq"]))
+   {
+	   echo "<b>404 Invalid Request</b> ";
+	   exit;
+   }
     
 	$servername="localhost";
 	$username="root";
@@ -18,25 +27,21 @@
 	   exit;
 	}	
 	
-	
 	$custid=$_SESSION["details"][0];
 	$orderid=$_SESSION["details"][1];
-	$date=$_SESSION["details"][2];
-	
+	$date=$_SESSION["details"][2];	
 		
-			
-		
-		if(isset($_GET["confirm"])){
-			
+	if(sizeof($_SESSION["cart"])==0){
+		echo "<strong> No items in your cart <a href='products.php'> Click here to redirect to Home </a> </strong>";
+		//header("Location:products.php");
+	}else	{
+		if(isset($_GET["confirm"])){	
 			if($_GET["confirm"]==md5($_SESSION["details"][2].$_SESSION["details"][1].$_SESSION["details"][0])){
 				$sql3="update orders set ostatus='CONFIRMED' where orderid=".$orderid.";";
 				$result3=mysqli_query($link,$sql3);
 				if($result3){
-				  echo "<a href='products.php'>Go to Home page</a>";
-				  //session_destroy();
-				  //header("Location : http://localhost/php/php/project/products.php");
-				  
-				  
+				  echo "<a href='products.php'>Go to Home page</a>"; exit;
+				  //session_destroy();			  
 				}else{
 				  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 				}	
@@ -62,7 +67,7 @@
 			  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 			}
 			//Execute Insert Query in order_items
-			echo $orderid." ".$x." ".$subtotal/$price." ".$subtotal;
+			//echo $orderid." ".$x." ".$subtotal/$price." ".$subtotal." zzzzzzzz  ".$date."zzzzzzzz";
 			$sql="insert into order_items(orderid,pid,quantity,total) values(".$orderid.",".$x.",".$subtotal/$price.",".$subtotal.");";
 			$result=mysqli_query($link,$sql);
 			if($result){
@@ -71,14 +76,24 @@
 			  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 			}
 	    }
-		$sql2="insert into orders(orderid,custid,ostatus,odate) values(".$orderid.",".$custid.",'PROCESSING',".$date.");";
+		$sql2="select * from orders where orderid='".$orderid."';";
 		$result2=mysqli_query($link,$sql2);
-		if($result2){
-		  echo "<div id='process'>Processing Order</div>";
+	if($result2->num_rows==1){
+		  echo "<div id='process' style='text-align:center; margin-top:165px'><span style='font-size:20px'><bold>Processing Order</bold></span></div>";
+		}else{
+		  $sql3="insert into orders(orderid,custid,ostatus,odate) values(".$orderid.",".$custid.",'PROCESSING','".$date."');";
+		$result3=mysqli_query($link,$sql3);
+		if($result3){
+		  echo "<div id='process' style='text-align:center; text-size:20px'><span style='font-size:20px'><bold>Processing Order</bold></span></div>";
 		}else{
 		  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 		}
 		}
+		
+		}
+		
+	}
+		
   //print_r($_SESSION["cart"]); 
   //echo "<br>";
   //print_r($_SESSION["details"]);
@@ -204,6 +219,5 @@ window.onload = function(){
 }
 
 </script>
-
 
 </html>

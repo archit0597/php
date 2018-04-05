@@ -19,7 +19,7 @@
     <div class="navbar-header right">      
 	  <ul class="nav navbar-nav navbar-left " id="details">   
 	
-      <li class="text-white"><a href="cart.php"><p class="text-white">Guitar Store</p></a></li>
+      <li class="text-white"><a href="products.php"><p class="text-white">Guitar Store</p></a></li>
 	</ul>
     </div>
 	<div class="right">
@@ -27,10 +27,12 @@
 	
       <li class="text-white"><a href="cart.php"><p class="text-white">My Cart</p></a></li>
       <li class="text-white"><a href="profile.php">Profile</a></li>
-	  <li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+	  <li><a href="index.php?session=new"><span class="fa fa-sign-out-alt"></span>Sign Out</a></li>
 	</ul>
 	</div>
   </div>
 </nav>
+<div style="margin-top:80px">
+</div>
 </body>
 </html>

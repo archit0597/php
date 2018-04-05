@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <?php
-echo "test";
+session_start();
+if (isset($_GET['session']) && $_GET['session']=="new"){
+	session_destroy();
+}else{
+	
+}
 $servername='localhost';
 $username='root';
 $password='';
 $link = mysqli_connect($servername,$username,$password);
-if($link==false)
-	die("connection failed". con-connect_error);
+if($link==false){
+die("connection failed". con-connect_error);exit;}
 if (!mysqli_select_db($link,'gsms')) {
     echo 'Could not select database';
     exit;
 }
-echo "connected";
 if (isset($_POST['username']) and isset($_POST['password'])){
 $username = $_POST["username"];
 $password = $_POST["password"];
-$query1 =mysqli_query($link,"SELECT * FROM cust WHERE custemail='$username'");
-if(empty($query1)){
-		echo "EMPTYYY";
+$query1 =mysqli_query($link,"SELECT * FROM cust WHERE custemail='".$username."'");
+$jf1 = mysqli_fetch_assoc($query1);
+if($jf1["custid"]==""){
+		echo " Invalid Credentialsl <a href='index.php'> Click here to redirect to Login </a>";
+		unset($_POST['username']); 
+		unset($_POST['password']);
+		exit;
 	}
-else{
-		$jf1 = mysqli_fetch_assoc($query1);
-	    echo "Something is there";
+else{	
+	    echo "OOPS. ";
 		if($jf1["custpass"]==($password)){
-			session_start();		
+					
             $id = $jf1["custid"];
-			echo $id."lkoko1";
+			//echo $id."lkoko1";
 	        $query2=mysqli_query($link,"SELECT max(orderid) from orders;");
 	        $jf2 = mysqli_fetch_assoc($query2);
 	        $oid1 = $jf2["max(orderid)"];
@@ -40,15 +47,15 @@ else{
 			header("Location:products.php");
 		}
 	    else{
-			echo "Invalid Credentials2";
+			echo "Invalid Credentials <a href='index.php'> Click here to redirect to Login </a>";
 			unset($_POST['username']); 
 			unset($_POST['password']);
-			
+			exit;
 		}
 	}
   }
    else{
-     echo "Unset";
+     //echo "Unset";
    }
  
 ?>
@@ -86,14 +93,18 @@ font-family: Roboto;
 			<br/>
 			<input type="password" name="password" placeholder="Enter Password">
 			<br/>
+			<b><span id="message" class="small"></span></b>
 			<button type="submit">Sign In</button>
 			<br/>
 			</form>
 			<a href="register.php"><p class="small"><b>New User? Register</b></p></a>
 		</div>
 	</div>
+	
 </body>
+<script>
 
+</script>
 <!--script>
 	$(document).ready(function () {
     	$('#logo').addClass('animated fadeInDown');

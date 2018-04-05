@@ -1,7 +1,13 @@
-qqqqqqqq1<?php
+<?php
    session_start();
    if(!isset($_SESSION["cart"]))
    $_SESSION["cart"]=array();
+   
+   if(!isset($_SESSION["details"]))
+   {
+	   echo "<b>404 Invalid Request</b> ";
+	   exit;
+   }
    
    if(isset($_GET["cart"])){
 	  if(in_array($_GET["cart"],$_SESSION["cart"])!=""){ //already there in session array
@@ -109,6 +115,8 @@ border: 0.5em solid rgba(220,220,220,0.99);
 
 
 <body>
+<?php include 'navbar.php'?>
+
 	<div class="somecont">
 			<?php
 $servername="localhost";
@@ -125,7 +133,7 @@ if(!mysqli_select_db($link,'gsms')){
 $sql=("select * from products");
 $result=mysqli_query($link,$sql);
 if($result){
-  echo "details saved successfully".$result->num_rows."<br>";
+  //echo "details saved successfully".$result->num_rows."<br>";
   $x=$result->num_rows;
   $val=($x/4) +1;
   $q=1;
@@ -150,7 +158,8 @@ if($result){
     }
 }else{
   echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}	
+}
+print_r($_SESSION["details"]);	
 /*
 if ($result->num_rows > 0) {
     // output data of each row
