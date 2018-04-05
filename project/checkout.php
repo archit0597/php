@@ -73,7 +73,7 @@
 	    }
 		$sql2="insert into orders(orderid,custid,ostatus,odate) values(".$orderid.",".$custid.",'PROCESSING',".$date.");";
 		$result2=mysqli_query($link,$sql2);
-		if($result){
+		if($result2){
 		  echo "<div id='process'>Processing Order</div>";
 		}else{
 		  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
