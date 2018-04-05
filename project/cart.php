@@ -1,5 +1,13 @@
 <?php
    session_start();
+   
+   if(!isset($_SESSION["details"]))
+   {
+	   echo "<b>404 Invalid Request</b> ";
+	   exit;
+   }
+
+   
    if(!isset($_SESSION["cart"]))
    $_SESSION["cart"]=array();
    if(!isset($_SESSION["cartq"])){
@@ -28,21 +36,18 @@
 <link rel="stylesheet" href="css/cart.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
 <body>
-<div id="welcome">
-    <p>WELCOME</p>
-	<form method="POST">
-	    
-	</form>
-</div>
+<?php include 'navbar.php'?>
 <div class="container">
-	<table id="cart" class="table table-hover table-condensed">
+ <div style='background:transparent' class="jumbotron">
+	<table id="cart" class="table table-hover table-condensed" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin-top: 69px">
     				<thead>
 						<tr>
-							<th style="width:50%">Product</th>
-							<th style="width:10%">Price</th>
-							<th style="width:8%">Quantity</th>
-							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:50%;  color:black">Product</th>
+							<th style="width:10%; color:black">Price(INR)</th>
+							<th style="width:8%; color:black">Quantity</th>
+							<th style="width:22%; color:black" class="text-center">Subtotal(INR)</th>
 							<th style="width:10%"></th>
 						</tr>
 					</thead>
@@ -91,12 +96,12 @@ foreach ($_SESSION["cart"] as $x){
 						<tr>
 							<td><a href="products.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong><span id="totalfield">0</span>.00</strong></td>
+							<td class="hidden-xs text-center" style="color:black"><strong><span id="totalfield">0</span>.00</strong></td>
 							<td><button class="btn btn-warning" onclick="buy()">Checkout<i class="fa fa-angle-right"></i></a></td>
 						</tr>
 					</tfoot>
 				</table>
-				
+			</div>	
 </div>
 </body>
 <?php
