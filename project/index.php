@@ -2,7 +2,8 @@
 <?php
 session_start();
 if (isset($_GET['session']) && $_GET['session']=="new"){
-	session_destroy();
+	unset($_SESSION["details"]);
+	unset($_SESSION["cart"]);
 }else{
 	
 }

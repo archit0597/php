@@ -79,6 +79,9 @@
 					}else{
 						if($row["orderid"]==$dummy){
 							echo '<hr>'; echo '<br>';
+						}else{
+							echo '<h4>Here are all the details of the order of OrderID='.$row["orderid"]." and Order Status=".$row["ostatus"].' and Order Date='.$row["odate"].'</h4>';
+							$dummy=$row["orderid"];
 						}
 					}
 					
