@@ -30,7 +30,7 @@ if($jf1["custid"]==""){
 	}
 else{	
 	    echo "OOPS. ";
-		if($jf1["custpass"]==($password)){
+		if($jf1["custpass"]==md5($password)){
 					
             $id = $jf1["custid"];
 			//echo $id."lkoko1";

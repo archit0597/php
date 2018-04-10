@@ -8,6 +8,11 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="css/pstyle.css">
+<style>
+.asd{
+	
+}
+</style>
 </head>
 <?php if(!isset($_SESSION["details"]))
    {
@@ -19,9 +24,10 @@
 <?php include 'navbar.php'?>
 
 <div class="container">
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid" style="margin-top:10px;">
 <?php
-    $servername='localhost';
+    echo "<center><h2> My Profile </h2></center><br>";
+	$servername='localhost';
     $username='root';
     $password='';
     $link = mysqli_connect($servername,$username,$password);
@@ -36,7 +42,7 @@
 	$result=mysqli_query($link,$sql);
 	if($result){
 	  while(($row = $result->fetch_assoc())) {
-		  echo "<h2> CustID=".$row["custid"]." and Name=".$row["custname"]." and EMail=".$row["custemail"]." and Phone=".$row["custphone"]." and Adress=".$row["custaddress"]." and State=".$row["custstate"]."</h2>";
+		  echo "<div style='asd'><h3>".$row["custname"]." <br>".$row["custemail"]."<br>".$row["custphone"]."<br>Address :".$row["custaddress"].",".$row["custstate"]."</h3></div>";
 	  }
 	}else{
 	  echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -61,9 +67,10 @@
 							<th style="width:10%"color:black" class="text-center">Order Date</th>
 						</tr>
 					</thead-->
-					
+					</div>
+	<div class="jumbotron jumbotron-fluid">				
 	<?php
-	
+	echo "<center><h2> My Orders </h2></center><br>";
 	$sql="select o.orderid 'orderid' , o.ostatus 'ostatus', o.odate 'odate', oi.pid 'pid', products.pmodel 'pmodel', products.pprice 'pprice' ,products.pbrand 'pbrand', products.pimgurl 'pimgurl', oi.quantity 'q', oi.total 'total' from orders o ,order_items oi,products where oi.orderid=o.orderid and o.custid='".$cid."' and products.pid=oi.pid";
 	$result=mysqli_query($link,$sql);
 	$dummy=0;
@@ -75,22 +82,22 @@
 					if($dummy==0){
 						$dummy=$row["orderid"];
 							
-							echo '<h4>Here are all the details of the order of OrderID='.$row["orderid"]." and Order Status=".$row["ostatus"].' and Order Date='.$row["odate"].'</h4>';
+							echo '<hr><h3>Order Details </h3><h4>OrderID: '.$row["orderid"]." &nbsp; | Status: ".$row["ostatus"].' &nbsp; | Order Date: '.$row["odate"].'</h4>';
 					}else{
 						if($row["orderid"]==$dummy){
-							echo '<hr>'; echo '<br>';
+							//echo '<hr>';
 						}else{
-							echo '<h4>Here are all the details of the order of OrderID='.$row["orderid"]." and Order Status=".$row["ostatus"].' and Order Date='.$row["odate"].'</h4>';
+							echo '<hr><h3>Order Details </h3><h4>OrderID: '.$row["orderid"]." &nbsp; | Status: ".$row["ostatus"].' &nbsp; | Order Date: '.$row["odate"].'</h4>';
 							$dummy=$row["orderid"];
 						}
 					}
 					
-					echo '<img src="pics/'.$row["pimgurl"].'.jpg" class="img-responsive" style="height: 100px; width: 100px;"/>'; echo '<br>';
-					echo '<h4>Product ID='.$row["pid"].'</h4>';echo '<br>';
-					echo '<h4>Name='.$row["pbrand"]." ".$row["pmodel"].'</h4>';echo '<br>';
-					echo '<h4>Unit Price='.$row["pprice"].'</h4>'; echo '<br>';
-					echo '<h4>Quantity='.$row["q"].'</h4>'; echo '<br>';
-					echo '<h4>Subtotal='.$row["total"].'</h4>'; echo '<br>';
+					echo '<div style="border: 1px dotted #fafafa;"><img src="pics/'.$row["pimgurl"].'.jpg" class="img-responsive" style="margin-right:20px; float: left;height: 100px; width: 100px;"/>'; //echo '<br>';
+					echo '<h6>Product ID='.$row["pid"].'</h6>';//echo '<br>';
+					echo '<h6>Unit Price='.$row["pprice"].'</h6>';// echo '<br>';
+					echo '<h6>Quantity='.$row["q"].'</h6>'; //echo '<br>';
+					echo '<h6>Subtotal='.$row["total"].'</h6>'; //echo '<br>';
+					echo '<h6>'.$row["pbrand"]." ".$row["pmodel"].'</h6></font></div>';//echo '<br>';
 					
 					
 	  }
